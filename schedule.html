@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Свадебное расписание — Никита и Диана</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 20% 15%, #faf8f5 0%, #ede7df 45%, #dbcec2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    font-family: 'Cormorant Garamond', serif;
+    color: #3a3229;
+  }
+  .page {
+    position: relative;
+    width: min(100%, 720px);
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(160,138,108,0.22);
+    border-radius: 32px;
+    box-shadow: 0 24px 70px rgba(100,80,60,0.14);
+    padding: 64px 32px 48px;
+    overflow: hidden;
+  }
+  .page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.95) 0, transparent 18%),
+      radial-gradient(circle at 80% 14%, rgba(255,255,255,0.92) 0, transparent 16%),
+      radial-gradient(circle at 25% 62%, rgba(255,255,255,0.9) 0, transparent 14%),
+      radial-gradient(circle at 72% 76%, rgba(255,255,255,0.94) 0, transparent 17%),
+      radial-gradient(circle at 52% 90%, rgba(255,255,255,0.88) 0, transparent 14%);
+    pointer-events: none;
+    opacity: 0.95;
+  }
+  h1 {
+    position: relative;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    text-align: center;
+    color: #8a7250;
+    margin-bottom: 24px;
+    z-index: 1;
+  }
+  .note {
+    position: relative;
+    max-width: 620px;
+    margin: 0 auto 44px;
+    color: #7b6b5b;
+    font-size: 1rem;
+    line-height: 1.75;
+    text-align: center;
+    z-index: 1;
+  }
+  .timeline {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 20px 0;
+    z-index: 1;
+  }
+  .timeline::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: rgba(56,44,30,0.18);
+  }
+  .timeline-item {
+    position: absolute;
+    display: grid;
+    gap: 10px;
+    width: 48%;
+    padding: 0 16px;
+  }
+  .timeline-item .time {
+    font-size: 2.1rem;
+    font-weight: 700;
+    line-height: 1.05;
+    color: #1f1b17;
+  }
+  .timeline-item .title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #2f2820;
+  }
+  .timeline-item .desc {
+    font-size: 0.95rem;
+    color: #6f6154;
+    line-height: 1.7;
+  }
+  .timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 32px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2f2820;
+  }
+  .timeline-item.left {
+    left: 0;
+  }
+  .timeline-item.right {
+    right: 0;
+    text-align: right;
+  }
+  .timeline-item.left::before {
+    left: calc(100% + 2px);
+  }
+  .timeline-item.right::before {
+    right: calc(100% + 2px);
+  }
+  .item-1 { top: 12px; }
+  .item-2 { top: 142px; }
+  .item-3 { top: 286px; }
+  .item-4 { top: 430px; }
+  .item-5 { top: 574px; }
+  .back-link {
+    position: relative;
+    display: inline-flex;
+    margin: 40px auto 0;
+    padding: 14px 24px;
+    border-radius: 999px;
+    background: rgba(138,106,76,0.1);
+    color: #3f3224;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid rgba(138,106,76,0.2);
+    z-index: 1;
+    transition: transform 0.2s ease;
+  }
+  .back-link:hover {
+    transform: translateY(-1px);
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <h1>Свадебное расписание</h1>
+    <p class="note">Пусть каждый момент этого дня будет уютным и тёплым — дождёмся встречи в назначенное время и пройдём весь путь вместе.</p>
+    <div class="timeline">
+      <div class="timeline-item left item-1">
+        <div class="time">14:20</div>
+        <div class="title">Сбор гостей</div>
+        <div class="desc">Наша регистрация пройдёт в зале ЗАГСа по адресу: Английская набережная, 28.</div>
+      </div>
+      <div class="timeline-item right item-2">
+        <div class="time">14:40</div>
+        <div class="title">Торжественная регистрация</div>
+        <div class="desc">Ждём, что вы разделите с нами этот торжественный момент.</div>
+      </div>
+      <div class="timeline-item left item-3">
+        <div class="time">16:00</div>
+        <div class="title">Фуршет</div>
+        <div class="desc">Время пролетит незаметно за фуршетом и общением с друзьями гостей в банкетном зале Amavi Hall (зал ART) по адресу: Свердловская набережная, 64.</div>
+      </div>
+      <div class="timeline-item right item-4">
+        <div class="time">17:00</div>
+        <div class="title">Праздничный банкет</div>
+        <div class="desc">Здесь пройдёт наш праздничный банкет.</div>
+      </div>
+      <div class="timeline-item left item-5">
+        <div class="time">22:30</div>
+        <div class="title">Окончание праздничного дня</div>
+        <div class="desc">Даже такой день может когда-то подойти к концу.</div>
+      </div>
+    </div>
+    <a class="back-link" href="index.html">← На главную</a>
+  </div>
+</body>
+</html>
