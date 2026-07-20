@@ -518,19 +518,6 @@
     </div>
   </div>
 
-  <div class="popup-overlay" id="confirmPopup">
-    <div class="popup-modal">
-      <button type="button" class="popup-close" id="popupClose">×</button>
-      <h3 class="popup-title">Для подтверждения приглашения введите Имя и Фамилию:</h3>
-      <form class="popup-form" id="popupForm">
-        <input type="text" name="firstName" placeholder="Имя" required />
-        <input type="text" name="lastName" placeholder="Фамилия" required />
-        <input type="tel" name="phone" placeholder="Номер телефона" required />
-        <button type="submit" class="popup-submit">Подтвердить</button>
-      </form>
-    </div>
-  </div>
-
 <script>
   const target = new Date('2026-10-10T00:00:00');
   function tick(){
@@ -590,11 +577,10 @@
   setInterval(tick, 1000);
 
   const confirmButton = document.querySelector('.confirm-button');
-  const confirmPopup = document.getElementById('confirmPopup');
-  const popupClose = document.getElementById('popupClose');
-  const popupForm = document.getElementById('popupForm');
 
-  const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz9RrlxzrQnS_VlB0Mq2wdRAkBm-YqnV2ZBQRrB5rv3v74n6iYLM6aHpU1cQv9bOMV_/exec';
+    const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzROQJd9ywlq2fE6vXm_ym-nzk6aMcgGPvwBjbXprWRI3Q4e2wrKlXjKLwApjdTNN93/exec';
+    // Google Form URL — откроется при нажатии на кнопку "Подтвердить"
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfd13Tz9jEdk8UcKiCuh6LgA6T7kXBZN206Z3Z3ZvcAJLGLWg/viewform?usp=publish-editor';
 
   function saveConfirmation(data) {
     const key = 'weddingConfirmations';
@@ -638,39 +624,12 @@
     }
   }
 
-  if (confirmButton && confirmPopup && popupClose && popupForm) {
+  if (confirmButton) {
     confirmButton.addEventListener('click', () => {
-      confirmPopup.classList.add('active');
-    });
-
-    popupClose.addEventListener('click', () => {
-      confirmPopup.classList.remove('active');
-    });
-
-    confirmPopup.addEventListener('click', (event) => {
-      if (event.target === confirmPopup) {
-        confirmPopup.classList.remove('active');
-      }
-    });
-
-    popupForm.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const formData = new FormData(popupForm);
-      const confirmation = {
-        firstName: formData.get('firstName')?.toString().trim() || '',
-        lastName: formData.get('lastName')?.toString().trim() || '',
-        phone: formData.get('phone')?.toString().trim() || '',
-      };
-
-      saveConfirmation(confirmation);
-      const result = await sendToGoogleSheets(confirmation);
-      confirmPopup.classList.remove('active');
-      popupForm.reset();
-      if (result?.success) {
-        alert('Спасибо! Ваше подтверждение сохранено.');
-      } else {
-        alert('Данные сохранены локально, но не отправлены в Google Таблицу. Ошибка: ' + (result?.error || 'неизвестная'));
+      try {
+        window.open(GOOGLE_FORM_URL, '_blank', 'noopener');
+      } catch (e) {
+        window.location.href = GOOGLE_FORM_URL;
       }
     });
   }
